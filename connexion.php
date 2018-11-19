@@ -1,23 +1,32 @@
 <?php
-mysql_connect("localhost", "root", "");
-mysql_select_db("nom_db");
-$email = mysql_real_escape_string(htmlspecialchars($_POST['email']));
-$password = mysql_real_escape_string(htmlspecialchars($_POST['password']));
-// Je crypte $passe avec la fonction "sha1".
-$password = sha1($password);
-$nbre = mysql_query("SELECT COUNT(*) AS exist FROM Clients WHERE Mail='$email'");
-$donnees = mysql_fetch_array($nbre);
-if($donnees['exist'] != 0) // Si le pseudo existe.
+$bdd = 'ppemarie';
+$hostname = 'localhost';
+$username = 'root';
+$password = '';
+$db = mysqli_connect ($hostname, $username, $password, $bdd);
+//  Récupération de l'utilisateur et de son pass hashé
+$req = $db->prepare('SELECT id_client, MotDePasse FROM clients WHERE mail = :Mail AND pass=:MotDePasse');
+$req->execute(array('mail' => $mail,'pass' => $pass));
+
+$resultat = $req->fetch();
+
+// Comparaison du pass envoyé via le formulaire avec la base
+$isPasswordCorrect = password_verify($_POST['pass'], $resultat['pass']);
+
+if (!$resultat)
 {
-	$quete = mysql_query("SELECT * FROM Clients WHERE Mail='$email'");
-	$infos = mysql_fetch_array($quete);
-	if($password == $infos['password'])
-	{
-	// C'est ici que je mets le code servant à effectuer la connexion, car le mot de passe est bon.
-	}
-	else // Si le couple pseudo/ mot de passe n'est pas bon.
-	{
-		echo 'Vous n\'avez pas rentré les bons identifiants';
-	}
+    echo 'Mauvais identifiant ou mot de passe !';
+}
+else
+{
+    if ($isPasswordCorrect) {
+        session_start();
+        $_SESSION['id'] = $resultat['id'];
+        $_SESSION['mail'] = $mail;
+        echo 'Vous êtes connecté !';
+    }
+    else {
+        echo 'Mauvais identifiant ou mot de passe !';
+    }
 }
 ?>
