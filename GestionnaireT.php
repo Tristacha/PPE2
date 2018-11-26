@@ -6,7 +6,7 @@ $hostname = 'localhost';
 $username = 'root';
 $password = '';
 $db = mysqli_connect ($hostname, $username, $password, $bdd);
-if(!empty($_POST['nom']))
+if(!empty($_POST['txt_secteur']))
 {
 	$secteur = mysqli_real_escape_string($db, $_POST['txt_secteur']);
 	htmlspecialchars($secteur);
@@ -19,7 +19,7 @@ if(!empty($_POST['nom']))
 	$arrivee = mysqli_real_escape_string($db, $_POST['txt_arrivee']);
 	htmlspecialchars($arrivee);
 	
-	$sql ="INSERT INTO liaison VALUES('$txt_liaison',  '$num_distance',  '$txt_secteur', '$txt_depart', '$txt_arrivee')";
+	$sql ="INSERT INTO liaison VALUES('$liaison','$distance','$secteur', '$depart', '$arrivee')";
 	$res = $db->query($sql);
 	mysqli_close($db);
 }
