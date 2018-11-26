@@ -75,7 +75,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div id="links">
                             <ul class="list-unstyled list-inline">
-                                <li><a href="Inscription.html"><span><i class="fa fa-lock"></i></span>S'inscrire</a></li>
+                                <li><a href="Inscription.html"><span><i class="fa fa-lock"></i></span>S'identifier</a></li>
                                 <li>
                                 	<form>
                                     	<ul class="list-inline">
@@ -191,10 +191,11 @@
         $con=mysqli_connect("localhost", "root", "");
         mysqli_select_db($con,"ppe");
          
-        $reponse = mysqli_query($con,"SELECT secteur.nom,liaison.code,liaison.Distance,port.nom,port.nom FROM liaison,secteur,port WHERE liaison.code like 0001 ");
+		 
+        $reponse = mysqli_query($con,"SELECT s.nom_secteur,l.code,l.Distance,(SELECT nom_port FROM port WHERE id_port=l.id_port_dep) as 'Port Départ', (SELECT nom_port FROM port WHERE id_port=l.id_port_arr) as 'Port Arrivée' FROM liaison l,secteur s WHERE l.id_secteur=s.id_secteur ;");
         ?>
         <center>
-        <table border="5" width=500">
+        <table border="5" width="500">
                 <tr> 
                     <th>Secteur</th>
                     <th>Code Liaison</th>
@@ -207,11 +208,11 @@
             {
             ?>
                 <tr>
-                    <td><?php echo $donnees['nom'];?></td>
+                    <td><?php echo $donnees['nom_secteur'];?></td>
                     <td><?php echo $donnees['code'];?></td>
                     <td><?php echo $donnees['Distance'];?></td>
-                    <td><?php echo $donnees['nom'];?></td>
-                    <td><?php echo $donnees['nom'];?></td>
+                    <td><?php echo $donnees['Port Départ'];?></td>
+                    <td><?php echo $donnees['Port Arrivée'];?></td>
                 </tr>
             <?php
             } //fin de la boucle, le tableau contient toute la BDD
@@ -221,6 +222,7 @@
 		<center>
 		<br />
 		<br />
+		<center><a href="Tarifs.html" class="btn btn-orange">Page des Tarifs</a></center>
 		<br />
         
        

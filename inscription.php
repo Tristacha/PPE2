@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Connexion a la BDD
-$bdd = 'ppemarie';
+$bdd = 'ppe';
 $hostname = 'localhost';
 $username = 'root';
 $password = '';
