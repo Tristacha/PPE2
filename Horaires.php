@@ -216,40 +216,7 @@
                             <hr class="heading-line" />
                         </div><!-- end page-heading -->
                             <?php 
-                                $bdd = 'ppe2';
-                                $hostname = 'localhost';
-                                $username = 'root';
-                                $password = '';
-                                $connexion = mysqli_connect ($hostname, $username, $password, $bdd);
-
-                                echo '<form method="post" >';
-                                echo '<select name="NomListe">';
-                                echo '<option>Tous</option>'; 
-                                echo '<option>01 Janvier - 01 Mai</option>';
-                                echo '<option>02 Mai - 01 Septembre</option>';
-                                echo '<option>02 Septembre - 31 Décembre</option>'; 
-                                echo '</select>'; 
-                                echo '<input type="submit" name="btnEnvoyer" value="Cliquer ici pour actualiser la page ">';
-                                echo '</form>'; 
-                                if (isset($_POST['btnEnvoyer'])) 
-                                { 
-                                    $requete="SELECT (SELECT nom_port FROM port WHERE id_port=L.id_port_dep) as 'Port Départ', (SELECT nom_port FROM port WHERE id_port=L.id_port_arr) as 'Port arrivé', date, heure FROM Liaison L, Traversée T WHERE L.code = T.num_tra AND Select dateDeb, dateFin FROM Periode P, Liaison L WHERE P.dateDeb = L.code AND date >= dateDeb AND date <= dateFin"; 
-                                    $executionRequete= mysqli_query($connexion,$requete);
-                                    echo '<table border="5" width="500" align="center">';
-                                    echo '<tr>';
-                                        echo '<th>Port de départ</th>';
-                                        echo '<th>Port d&130 arrivé</th>';
-                                        echo '<th>Date</th>';
-                                        echo '<th>Heure</th>';
-                                    echo '</tr>';
-                                    while ($tab = mysqli_fetch_array($connexion,$executionRequete)) 
-                                    {
-                                        echo '<tr>';
-                                        echo '<td>'.$tab[0].'</td>'; 
-                                        echo '</tr>'; 
-                                    } 
-                                    echo '</table>'; 
-                                }
+                              require "HorairesG.php";
                             ?>
                     </div><!-- end columns -->
                 </div><!-- end row -->
