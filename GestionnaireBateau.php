@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html>   
 <html lang="en">
     <head>
         <title>Gestionnaire Bateau</title>
@@ -190,14 +190,14 @@
 						<br />
 						<br />
 						<br />
-						<form action="GestionnaireB.php" method="post">
+						<form action="GestionnaireBateau.php" method="post">
 						<center>
 						Nom du Bateau:<input type="text" name="txt_bateau" size="20" required/>
 						Longueur du Bateau:<input type="text" name="txt_longueur" size="20" required/>
 						Nombre d'équipement du Bateau:<input type="number" name="num_equipement" require/><br><br><br>
 						Vitesse:<input type="text" name="txt_vitesse" size="20" required/>
 						Largeur du Bateau:<input type="text" name="txt_largeur" size="20" required/>
-						Image du Bateau:<br><br><br><br><br><br>
+						ID du Bateau:<input type="number" name="num_code" require/><br><br><br><br><br><br>
 						<input type="submit" value="Valider" class="btn btn-orange"/>
 						<input type="reset" value="Annuler" class="btn btn-orange" />
 						<br><br><br>
@@ -214,6 +214,8 @@ $password = '';
 $db = mysqli_connect ($hostname, $username, $password, $bdd);
 if(!empty($_POST['txt_bateau']))
 {
+    $code = mysqli_real_escape_string($db, $_POST['num_code']);
+	htmlspecialchars($code);
 	$nombat = mysqli_real_escape_string($db, $_POST['txt_bateau']);
 	htmlspecialchars($nombat);
 	$longueur = mysqli_real_escape_string($db, $_POST['txt_longueur']);
@@ -227,7 +229,7 @@ if(!empty($_POST['txt_bateau']))
 	
 	
 	
-	$sql ="INSERT INTO bateau VALUES('','$nombat',  '$longueur',  '$largeur', '$vitesse', '$num_eq')";
+	$sql ="INSERT INTO bateau VALUES('$code','$nombat',  '$longueur',  '$largeur', '$vitesse', '$num_eq')";
 	$res = $db->query($sql);
 	mysqli_close($db);
 }
