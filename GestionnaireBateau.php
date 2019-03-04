@@ -1,5 +1,5 @@
-<?php 
-    session_start();
+<?php
+	session_start();
 ?>
 <html lang="en">
     <head>
@@ -77,55 +77,23 @@
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div id="links">
                             <ul class="list-unstyled list-inline">
-                                 <?php 
-                                    if(!isset($_SESSION['id']))
-                                    {
-                                ?>
-                                        <li><a href="connexion.php"><span><i class="fa fa-lock"></i></span>S'identifier</a></li>
-                                        <li><a href="inscription.php"><span><i class="fa fa-lock"></i></span>S'inscrires</a></li>
-                                    }
-                                <?php
-                                    }
-                                    else
-                                    {
-                                ?>
-                                        <li><a href="profil.php"><span><i class="fa fa-lock"></i></span><?php echo $_SESSION['nom']?></a></li>
-                                        <li><a href="function/logout.php"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span>Deconnexion</a></li>
-                                <?php
-                                    }
-                                ?>
-                                    <div class="modal fade" id="popUpWindow">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <!-- header -->
-                                            <!--<div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h3 class="modal-title">Se connecter</h3>
-                                            </div>-->
-                                        <!-- body -->
-                                        <form name="myform"  action="" method="POST">
-                                            <div class="modal-body">
-                                                <!--<label for="email">Adresse e-mail :</label>
-                                                <input id="email" name="email" class="form-control" type="text" /required>
-                                                <label for="password" class="cols-sm-2 control-label">Mot de passe :</label>
-                                                <div class="cols-sm-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                                        <input type="password" class="form-control" name="password" id="password"  placeholder="Mot de passe" autocomplete="on" /required/>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <input type="submit" value="Identifiez-vous" class="btn btn-orange  btn-block">-->
-                                            </div>
-                                        </form>
-                                        
-                                        <!-- footer -->
-                                            <div class="modal-footer">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+							<?php
+								if(!isset($_SESSION['id']))
+								{
+								?>
+								
+                                <li><a href="connexion.php"><span><i class="fa fa-lock"></i></span>S'identifier</a></li>
+								<li><a href="inscription.php"><span><i class="fa fa-lock"></i></span>S'inscrire</a></li>
+								<?php
+								}
+								else
+								{
+								?>
+								<li><a href="profil.php"><span><i class="fa fa-lock"></i></span><?php echo $_SESSION['nom'];?></a></li>
+								<li><a href="function/logout.php"><span><i class="fa fa-lock"></i></span>Deconnexion</a></li>
+								<?php
+								}
+								?>
                                 <li>
                                 	<form>
                                     	<ul class="list-inline">
@@ -180,7 +148,7 @@
                         <li class="button"><a href="index.php" class="btn btn-white" >Accueil<span></span></a>		
                         </li>
 						
-                        <li class="button"><a href="Trajet.php" class="btn btn-white" >Trajet<span></span></a>			
+                        <li class="button"><a href="trajet.php" class="btn btn-white" >Trajet<span></span></a>			
                         </li>
 						
                         <li class="button"><a href="Horaires.php" class="btn btn-white">Horaires<span></span></a>		
@@ -214,7 +182,7 @@
                         <li> 
 						<a href="index.php" class="btn btn-black" ><span><i class="fa fa-home link-icon"></i></span>  Accueil<span></span></a>
 						
-                        <a href="Trajet.php" class="btn btn-black active"  ><span><i class="fa fa-ship link-icon"></i></span>  Trajets<span></span></a>                      
+                        <a href="trajet.php" class="btn btn-black active"  ><span><i class="fa fa-ship link-icon"></i></span>  Trajets<span></span></a>                      
                         
                         <a href="Horaires.php" class="btn btn-black" ><span><i class="fa fa-clock-o link-icon"></i></span>  Horaires<span></span></a>
                        
@@ -247,7 +215,7 @@
 						Nombre d'équipement du Bateau:<input type="number" name="num_equipement" require/><br><br><br>
 						Vitesse:<input type="text" name="txt_vitesse" size="20" required/>
 						Largeur du Bateau:<input type="text" name="txt_largeur" size="20" required/>
-						ID du Bateau:<input type="number" name="num_code" size="20" required/><br><br><br><br><br><br>
+						ID du Bateau:<input type="number" name="num_code" require/><br><br><br><br><br><br>
 						<input type="submit" value="Valider" class="btn btn-orange"/>
 						<input type="reset" value="Annuler" class="btn btn-orange" />
 						<br><br><br>
@@ -256,30 +224,34 @@
 						
 						<?php
 
-                            include('function/coBdD.php');
-                            if(!empty($_POST['txt_bateau']))
-                            {
-
-                                $code = $_POST['num_code'];
-                                htmlspecialchars($code);
-                            	$nombat = $_POST['txt_bateau'];
-                            	htmlspecialchars($nombat);
-                            	$longueur = $_POST['txt_longueur'];
-                            	htmlspecialchars($longueur);
-                            	$num_eq =$_POST['num_equipement'];
-                            	htmlspecialchars($num_eq);
-                            	$vitesse =  $_POST['txt_vitesse'];
-                            	htmlspecialchars($vitesse);
-                            	$largeur =  $_POST['txt_largeur'];
-                            	htmlspecialchars($largeur);
-                            	
-                            	
-                            	
-                            	$sql ="INSERT INTO bateau VALUES('$code','$nombat',  '$longueur',  '$largeur', '$vitesse', '$num_eq')";
-                            	$res = $db->query($sql);
-                            	mysqli_close($db);
-                            }
-                        ?>
+// Connexion a la BDD
+$bdd = 'ppe';
+$hostname = 'localhost';
+$username = 'root';
+$password = '';
+$db = mysqli_connect ($hostname, $username, $password, $bdd);
+if(!empty($_POST['txt_bateau']))
+{
+    $code = mysqli_real_escape_string($db, $_POST['num_code']);
+	htmlspecialchars($code);
+	$nombat = mysqli_real_escape_string($db, $_POST['txt_bateau']);
+	htmlspecialchars($nombat);
+	$longueur = mysqli_real_escape_string($db, $_POST['txt_longueur']);
+	htmlspecialchars($longueur);
+	$num_eq = mysqli_real_escape_string($db, $_POST['num_equipement']);
+	htmlspecialchars($num_eq);
+	$vitesse = mysqli_real_escape_string($db, $_POST['txt_vitesse']);
+	htmlspecialchars($vitesse);
+	$largeur = mysqli_real_escape_string($db, $_POST['txt_largeur']);
+	htmlspecialchars($largeur);
+	
+	
+	
+	$sql ="INSERT INTO bateau VALUES('$code','$nombat',  '$longueur',  '$largeur', '$vitesse', '$num_eq')";
+	$res = $db->query($sql);
+	mysqli_close($db);
+}
+?>
 	
 						
        
@@ -304,7 +276,7 @@
                             <h3 class="footer-heading">Site</h3>
                             <ul class="list-unstyled">
                             	<li><a href="index.php">Accueil</a></li>
-                            	<li><a href="Trajet.php">Trajets</a></li>
+                            	<li><a href="trajet.php">Trajets</a></li>
                                 <li><a href="Horaires.php">Horaires</a></li>
                                 <li><a href="Tarifs.php">Tarifs</a></li>
                                 <li><a href="Reservation.php">Réservation</a></li>
