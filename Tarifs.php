@@ -1,9 +1,9 @@
 <?php 
-    session_start();
+session_start();
 ?>
 <html lang="en">
     <head>
-        <title>Gestionnaire Bateau</title>
+        <title>Tarifs</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -77,12 +77,12 @@
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div id="links">
                             <ul class="list-unstyled list-inline">
-                                 <?php 
+                                <?php 
                                     if(!isset($_SESSION['id']))
                                     {
                                 ?>
                                         <li><a href="connexion.php"><span><i class="fa fa-lock"></i></span>S'identifier</a></li>
-                                        <li><a href="inscription.php"><span><i class="fa fa-lock"></i></span>S'inscrires</a></li>
+                                        <li><a href="inscription.php"><span><i class="fa fa-lock"></i></span>S'inscrire</a></li>
                                     }
                                 <?php
                                     }
@@ -186,7 +186,7 @@
                         <li class="button"><a href="Horaires.php" class="btn btn-white">Horaires<span></span></a>		
                         </li>
                         
-						<li class="button"><a href="Tarifs.php" class="btn btn-white" >Tarifs<span></span></a>		
+						<li class="dropdown active"><a href="Tarifs.php" class="btn btn-white" >Tarifs<span></span></a>		
                         </li>
 						
 						<li class="button"><a href="Reservation.php" class="btn btn-white" >Réservation<span></span></a>			
@@ -214,11 +214,11 @@
                         <li> 
 						<a href="index.php" class="btn btn-black" ><span><i class="fa fa-home link-icon"></i></span>  Accueil<span></span></a>
 						
-                        <a href="Trajet.php" class="btn btn-black active"  ><span><i class="fa fa-ship link-icon"></i></span>  Trajets<span></span></a>                      
+                        <a href="Trajet.php" class="btn btn-black"  ><span><i class="fa fa-ship link-icon"></i></span>  Trajets<span></span></a>                      
                         
                         <a href="Horaires.php" class="btn btn-black" ><span><i class="fa fa-clock-o link-icon"></i></span>  Horaires<span></span></a>
                        
-                        <a href="Tarifs.php" class="btn btn-black"><span><i class="fa fa-euro link-icon"></i></span>  Tarifs<span></span></a>
+                        <a href="Tarifs.php" class="btn btn-black active"><span><i class="fa fa-euro link-icon"></i></span>  Tarifs<span></span></a>
 						
                         <a href="Reservation.php" class="btn btn-black" ><span><i class="fa fa-ticket link-icon"></i></span>  Réservation<span></span></a>
 						
@@ -233,57 +233,100 @@
         
         
 		<!--========================= FLEX SLIDER =====================-->
-						<br />
-						<center><h1>Ajouter un Bateau</h1></center>
-						<br />
-						<center><h4>Remplissez le formulaire afin de rajouter un bateau à la liste:</h4></center>
-						<br />
-						<br />
-						<br />
-						<form action="GestionnaireBateau.php" method="post">
-						<center>
-						Nom du Bateau:<input type="text" name="txt_bateau" size="20" required/>
-						Longueur du Bateau:<input type="text" name="txt_longueur" size="20" required/>
-						Nombre d'équipement du Bateau:<input type="number" name="num_equipement" require/><br><br><br>
-						Vitesse:<input type="text" name="txt_vitesse" size="20" required/>
-						Largeur du Bateau:<input type="text" name="txt_largeur" size="20" required/>
-						ID du Bateau:<input type="number" name="num_code" size="20" required/><br><br><br><br><br><br>
-						<input type="submit" value="Valider" class="btn btn-orange"/>
-						<input type="reset" value="Annuler" class="btn btn-orange" />
-						<br><br><br>
-						</center>
-						</form>
-						
-						<?php
 
-                            include('function/coBdD.php');
-                            if(!empty($_POST['txt_bateau']))
-                            {
 
-                                $code = $_POST['num_code'];
-                                htmlspecialchars($code);
-                            	$nombat = $_POST['txt_bateau'];
-                            	htmlspecialchars($nombat);
-                            	$longueur = $_POST['txt_longueur'];
-                            	htmlspecialchars($longueur);
-                            	$num_eq =$_POST['num_equipement'];
-                            	htmlspecialchars($num_eq);
-                            	$vitesse =  $_POST['txt_vitesse'];
-                            	htmlspecialchars($vitesse);
-                            	$largeur =  $_POST['txt_largeur'];
-                            	htmlspecialchars($largeur);
-                            	
-                            	
-                            	
-                            	$sql ="INSERT INTO bateau VALUES('$code','$nombat',  '$longueur',  '$largeur', '$vitesse', '$num_eq')";
-                            	$res = $db->query($sql);
-                            	mysqli_close($db);
-                            }
-                        ?>
-	
-						
-       
-
+        
+        <!--=============== HOTEL OFFERS ===============-->
+		<section id="hotel-offers" class="section-padding">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-sm-12">
+                    	<div class="page-heading">
+                        	<h2>Nos Tarifs</h2>
+                            <hr class="heading-line" />
+                        </div>
+                        
+						<div class="container">
+						<div class="row col-md-12 custyle">
+						<div class="span5">
+							<table class="table table-striped custab">
+							
+							<tbody>
+							<tr>
+								<th rowspan="2">Catégories</th>
+								<th rowspan="2">Types</th>
+								<th colspan="3">Périodes</th>                                         
+							</tr>
+							<tr>
+								<td>01 Janvier<br>01 Mai</td>
+								<td>02 Mai<br>01 Septembre</td>
+								<td>02 Septembre<br>31 Decembre</td>
+							</tr>
+							<tr>
+								<td rowspan="3">A-Passager</td>
+								<td>A1-Adulte</td>
+								<td>18.00€</td>
+								<td>20.00€</td>
+								<td>19.00€</td>                                      
+							</tr>
+							<tr>
+								<td>A2-Junior 8 à 18 ans</td>
+								<td>11.10€</td>
+								<td>13.10€</td>
+								<td>12.10€</td>                                      
+							</tr>
+							<tr>
+								<td>A3-Enfant 0 à 7 ans</td>
+								<td>5.60€</td>
+								<td>7.00€</td>
+								<td>6.40€</td>                                      
+							</tr>
+							<tr>
+								<td rowspan="2">B-Véh-inf-2m</td>
+								<td>B1-Voiture long.inf.4m</td>
+								<td>86.00€</td>
+								<td>95.00€</td>
+								<td>91.00€</td>                                      
+							</tr>
+							<tr>
+								<td>B2-Voiture long.inf.5m</td>
+								<td>129.00€</td>
+								<td>142.00€</td>
+								<td>136.00€</td>                                      
+							</tr>
+							<tr>
+								<td rowspan="3">C-Véh-sup-2m</td>
+								<td>C1-Fourgon</td>
+								<td>189.00€</td>
+								<td>208.00€</td>
+								<td>199.00€</td>                                      
+							</tr>
+							<tr>
+								<td>C2-Camping car</td>
+								<td>205.00€</td>
+								<td>226.00€</td>
+								<td>216.00€</td>                                      
+							</tr>
+							<tr>
+								<td>C3-Camion</td>
+								<td>268.00€</td>
+								<td>295.00€</td>
+								<td>282.00€</td>                                      
+							</tr>
+							</tbody>
+							</table>
+						</div>
+						</div>
+						</div>
+                            
+                        </div>
+                        
+                        <div class="view-all text-center">
+                        	<a href="Trajet.php" class="btn btn-orange">Voir toutes les croisières</a>
+                        </div>
+                    </div>
+                </div>
+        </section>
         <!--======================= FOOTER =======================-->
         <section id="footer" class="ftr-heading-o ftr-heading-mgn-1">
         

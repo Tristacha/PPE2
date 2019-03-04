@@ -1,9 +1,9 @@
 <?php 
-    session_start();
+session_start();
 ?>
 <html lang="en">
     <head>
-        <title>Gestionnaire Bateau</title>
+        <title>Index</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -77,12 +77,12 @@
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div id="links">
                             <ul class="list-unstyled list-inline">
-                                 <?php 
+                                <?php 
                                     if(!isset($_SESSION['id']))
                                     {
                                 ?>
                                         <li><a href="connexion.php"><span><i class="fa fa-lock"></i></span>S'identifier</a></li>
-                                        <li><a href="inscription.php"><span><i class="fa fa-lock"></i></span>S'inscrires</a></li>
+                                        <li><a href="inscription.php"><span><i class="fa fa-lock"></i></span>S'inscrire</a></li>
                                     }
                                 <?php
                                     }
@@ -177,7 +177,7 @@
                 
                 <div class="collapse navbar-collapse" id="myNavbar1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="button"><a href="index.php" class="btn btn-white" >Accueil<span></span></a>		
+                        <li class="dropdown active"><a href="index.php" class="btn btn-white" >Accueil<span></span></a>		
                         </li>
 						
                         <li class="button"><a href="Trajet.php" class="btn btn-white" >Trajet<span></span></a>			
@@ -211,10 +211,10 @@
                     
                     <div class="list-group panel">
                     <ul class="nav navbar-nav navbar-right navbar-search-link">
-                        <li> 
-						<a href="index.php" class="btn btn-black" ><span><i class="fa fa-home link-icon"></i></span>  Accueil<span></span></a>
+                        <li>
+						<a href="index.php" class="btn btn-black active" ><span><i class="fa fa-home link-icon"></i></span>  Accueil<span></span></a>
 						
-                        <a href="Trajet.php" class="btn btn-black active"  ><span><i class="fa fa-ship link-icon"></i></span>  Trajets<span></span></a>                      
+                        <a href="Trajet.php" class="btn btn-black"  ><span><i class="fa fa-ship link-icon"></i></span>  Trajets<span></span></a>                      
                         
                         <a href="Horaires.php" class="btn btn-black" ><span><i class="fa fa-clock-o link-icon"></i></span>  Horaires<span></span></a>
                        
@@ -233,55 +233,182 @@
         
         
 		<!--========================= FLEX SLIDER =====================-->
-						<br />
-						<center><h1>Ajouter un Bateau</h1></center>
-						<br />
-						<center><h4>Remplissez le formulaire afin de rajouter un bateau à la liste:</h4></center>
-						<br />
-						<br />
-						<br />
-						<form action="GestionnaireBateau.php" method="post">
-						<center>
-						Nom du Bateau:<input type="text" name="txt_bateau" size="20" required/>
-						Longueur du Bateau:<input type="text" name="txt_longueur" size="20" required/>
-						Nombre d'équipement du Bateau:<input type="number" name="num_equipement" require/><br><br><br>
-						Vitesse:<input type="text" name="txt_vitesse" size="20" required/>
-						Largeur du Bateau:<input type="text" name="txt_largeur" size="20" required/>
-						ID du Bateau:<input type="number" name="num_code" size="20" required/><br><br><br><br><br><br>
-						<input type="submit" value="Valider" class="btn btn-orange"/>
-						<input type="reset" value="Annuler" class="btn btn-orange" />
-						<br><br><br>
-						</center>
-						</form>
-						
-						<?php
+        <section class="flexslider-container" id="flexslider-container-1">
 
-                            include('function/coBdD.php');
-                            if(!empty($_POST['txt_bateau']))
-                            {
+            <div class="flexslider slider" id="slider-1">
+                <ul class="slides">
+                    
+                    <li class="item-1" style="background:			linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(images/accueil.jpg) 50% 0%;
+	background-size:cover;
+	height:100%;">
+                    	<div class=" meta">         
+                            <div class="container">
+                                <h2>Découvrez</h2>
+                                <h1>Les Caraïbes</h1>
+                                <a href="Trajet.php" class="btn btn-default">En voir plus</a>
+                            </div><!-- end container -->  
+                        </div><!-- end meta -->
+                    </li><!-- end item-1 -->
+                    
+                   
+                </ul>
+            </div><!-- end slider -->
 
-                                $code = $_POST['num_code'];
-                                htmlspecialchars($code);
-                            	$nombat = $_POST['txt_bateau'];
-                            	htmlspecialchars($nombat);
-                            	$longueur = $_POST['txt_longueur'];
-                            	htmlspecialchars($longueur);
-                            	$num_eq =$_POST['num_equipement'];
-                            	htmlspecialchars($num_eq);
-                            	$vitesse =  $_POST['txt_vitesse'];
-                            	htmlspecialchars($vitesse);
-                            	$largeur =  $_POST['txt_largeur'];
-                            	htmlspecialchars($largeur);
-                            	
-                            	
-                            	
-                            	$sql ="INSERT INTO bateau VALUES('$code','$nombat',  '$longueur',  '$largeur', '$vitesse', '$num_eq')";
-                            	$res = $db->query($sql);
-                            	mysqli_close($db);
-                            }
-                        ?>
-	
-						
+        
+        <!--=============== HOTEL OFFERS ===============-->
+        <section id="hotel-offers" class="section-padding">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-sm-12">
+                    	<div class="page-heading">
+                        	<h2>Nos Croisières</h2>
+                            <hr class="heading-line" />
+                        </div><!-- end page-heading -->
+                        
+                        <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-hotel-offers">
+                            
+                            <div class="item">
+                                <div class="main-block hotel-block">
+                                    <div class="main-img">
+                                    	<a href="#">
+                                        	<img src="images/C1.jpg" class="img-responsive" alt="hotel-img" />
+                                        </a>
+                                        <div class="main-mask">
+                                        	<ul class="list-unstyled list-inline offer-price-1">
+                                            	<li class="price">€300.00<span class="divider">|</span><span class="pkg">Jour/Nuit</span></li>
+                                                <li class="rating">
+                                                	<span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star lightgrey"></i></span>
+                                                </li>
+                                            </ul>
+                                        </div><!-- end main-mask -->
+                                    </div><!-- end offer-img -->
+                                    
+                                    <div class="main-info hotel-info">
+                                    	<div class="arrow">
+                                        	<a href="#"><span><i class="fa fa-angle-right"></i></span></a>
+                                        </div><!-- end arrow -->
+                                        
+                                    	<div class="main-title hotel-title">
+                                            <a href="#">Hotel de Paris</a>
+                                            <p>Pour: Paris</p>
+                                        </div><!-- end hotel-title -->
+                                    </div><!-- end hotel-info -->
+                                </div><!-- end hotel-block -->
+                            </div><!-- end item -->
+                        	
+                            <div class="item">
+                                <div class="main-block hotel-block">
+                                    <div class="main-img">
+                                    	<a href="#">
+                                        	<img src="images/C2.jpg" class="img-responsive" alt="hotel-img" />
+                                        </a>
+                                        <div class="main-mask">
+                                        	<ul class="list-unstyled list-inline offer-price-1">
+                                            	<li class="price">€300.00<span class="divider">|</span><span class="pkg">Jour/Nuit</span></li>
+                                                <li class="rating">
+                                                	<span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star lightgrey"></i></span>
+                                                </li>
+                                            </ul>
+                                        </div><!-- end main-mask -->
+                                    </div><!-- end offer-img -->
+                                    
+                                    <div class="main-info hotel-info">
+                                    	<div class="arrow">
+                                        	<a href="#"><span><i class="fa fa-angle-right"></i></span></a>
+                                        </div><!-- end arrow -->
+                                        
+                                    	<div class="main-title hotel-title">
+                                            <a href="#">Hotel de Paris</a>
+                                            <p>Pour: Paris</p>
+                                        </div><!-- end hotel-title -->
+                                    </div><!-- end hotel-info -->
+                                </div><!-- end hotel-block -->
+                            </div><!-- end item -->
+                            
+                            <div class="item">
+                                <div class="main-block hotel-block">
+                                    <div class="main-img">
+                                    	<a href="#">
+                                        	<img src="images/C3.jpg" class="img-responsive" alt="hotel-img" />
+                                        </a>
+                                        <div class="main-mask">
+                                        	<ul class="list-unstyled list-inline offer-price-1">
+                                            	<li class="price">€300.00<span class="divider">|</span><span class="pkg">Jour/Nuit</span></li>
+                                                <li class="rating">
+                                                	<span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star lightgrey"></i></span>
+                                                </li>
+                                            </ul>
+                                        </div><!-- end main-mask -->
+                                    </div><!-- end offer-img -->
+                                    
+                                    <div class="main-info hotel-info">
+                                    	<div class="arrow">
+                                        	<a href="#"><span><i class="fa fa-angle-right"></i></span></a>
+                                        </div><!-- end arrow -->
+                                        
+                                    	<div class="main-title hotel-title">
+                                            <a href="#">Hotel de Paris</a>
+                                            <p>Pour: Paris</p>
+                                        </div><!-- end hotel-title -->
+                                    </div><!-- end hotel-info -->
+                                </div><!-- end hotel-block -->
+                            </div><!-- end item -->
+                            
+                            <div class="item">
+                                <div class="main-block hotel-block">
+                                    <div class="main-img">
+                                    	<a href="#">
+                                        	<img src="images/C4.jpg" class="img-responsive" alt="hotel-img" />
+                                        </a>
+                                        <div class="main-mask">
+                                        	<ul class="list-unstyled list-inline offer-price-1">
+                                            	<li class="price">€300.00<span class="divider">|</span><span class="pkg">Jour/Nuit</span></li>
+                                                <li class="rating">
+                                                	<span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star orange"></i></span>
+                                                    <span><i class="fa fa-star lightgrey"></i></span>
+                                                </li>
+                                            </ul>
+                                        </div><!-- end main-mask -->
+                                    </div><!-- end offer-img -->
+                                    
+                                    <div class="main-info hotel-info">
+                                    	<div class="arrow">
+                                        	<a href="#"><span><i class="fa fa-angle-right"></i></span></a>
+                                        </div><!-- end arrow -->
+                                        
+                                    	<div class="main-title hotel-title">
+                                            <a href="#">Hotel de Paris</a>
+                                            <p>Pour: Paris</p>
+                                        </div><!-- end hotel-title -->
+                                    </div><!-- end hotel-info -->
+                                </div><!-- end hotel-block -->
+                            </div><!-- end item -->
+                            
+                        </div><!-- end owl-hotel-offers -->
+                        
+                        <div class="view-all text-center">
+                        	<a href="Trajet.php" class="btn btn-orange">Voir toutes les croisières</a>
+                        </div><!-- end view-all -->
+                    </div><!-- end columns -->
+                </div><!-- end row -->
+        	</div><!-- end container -->
+        </section><!-- end hotel-offers -->
+        
        
 
         <!--======================= FOOTER =======================-->
@@ -331,6 +458,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="copyright">
                             <p>© 2018 <a href="#">MarieTeam</a>. Tout droits réservés.</p>
+							<a href="Easter Egg.html" class="btn btn-black">   </a>
                         </div><!-- end columns -->
                         
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">

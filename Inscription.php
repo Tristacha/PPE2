@@ -1,9 +1,23 @@
 <?php 
     session_start();
+    if(isset($_POST['register']))
+    {
+        if(strlen($_POST['password'])>=6)
+        {
+            include ('function/Function_inscript.php');
+            create_user($_POST['password'],$_POST['confirm'],$_POST['nom'],$_POST['prenom'],$_POST['email'],$_POST['dob'],$_POST['codepostal'],$_POST['numero']);
+        
+        }
+        else
+        {
+            $erreur = "Votre mot de passe et trop court doit avoir plus de 6 charactere";
+        }
+        
+    }
 ?>
 <html lang="en">
     <head>
-        <title>Gestionnaire Bateau</title>
+        <title>Inscription</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -77,19 +91,19 @@
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div id="links">
                             <ul class="list-unstyled list-inline">
+							<!-- Connexion -->
                                  <?php 
                                     if(!isset($_SESSION['id']))
                                     {
                                 ?>
                                         <li><a href="connexion.php"><span><i class="fa fa-lock"></i></span>S'identifier</a></li>
-                                        <li><a href="inscription.php"><span><i class="fa fa-lock"></i></span>S'inscrires</a></li>
                                     }
                                 <?php
                                     }
                                     else
                                     {
                                 ?>
-                                        <li><a href="profil.php"><span><i class="fa fa-lock"></i></span><?php echo $_SESSION['nom']?></a></li>
+                                        <li><a href="profil.html"><span><i class="fa fa-lock"></i></span><?php echo $_SESSION['nom']?></a></li>
                                         <li><a href="function/logout.php"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span>Deconnexion</a></li>
                                 <?php
                                     }
@@ -232,57 +246,68 @@
         </div><!-- end sidenav-content -->
         
         
-		<!--========================= FLEX SLIDER =====================-->
-						<br />
-						<center><h1>Ajouter un Bateau</h1></center>
-						<br />
-						<center><h4>Remplissez le formulaire afin de rajouter un bateau à la liste:</h4></center>
-						<br />
-						<br />
-						<br />
-						<form action="GestionnaireBateau.php" method="post">
-						<center>
-						Nom du Bateau:<input type="text" name="txt_bateau" size="20" required/>
-						Longueur du Bateau:<input type="text" name="txt_longueur" size="20" required/>
-						Nombre d'équipement du Bateau:<input type="number" name="num_equipement" require/><br><br><br>
-						Vitesse:<input type="text" name="txt_vitesse" size="20" required/>
-						Largeur du Bateau:<input type="text" name="txt_largeur" size="20" required/>
-						ID du Bateau:<input type="number" name="num_code" size="20" required/><br><br><br><br><br><br>
-						<input type="submit" value="Valider" class="btn btn-orange"/>
-						<input type="reset" value="Annuler" class="btn btn-orange" />
-						<br><br><br>
-						</center>
-						</form>
-						
-						<?php
-
-                            include('function/coBdD.php');
-                            if(!empty($_POST['txt_bateau']))
-                            {
-
-                                $code = $_POST['num_code'];
-                                htmlspecialchars($code);
-                            	$nombat = $_POST['txt_bateau'];
-                            	htmlspecialchars($nombat);
-                            	$longueur = $_POST['txt_longueur'];
-                            	htmlspecialchars($longueur);
-                            	$num_eq =$_POST['num_equipement'];
-                            	htmlspecialchars($num_eq);
-                            	$vitesse =  $_POST['txt_vitesse'];
-                            	htmlspecialchars($vitesse);
-                            	$largeur =  $_POST['txt_largeur'];
-                            	htmlspecialchars($largeur);
-                            	
-                            	
-                            	
-                            	$sql ="INSERT INTO bateau VALUES('$code','$nombat',  '$longueur',  '$largeur', '$vitesse', '$num_eq')";
-                            	$res = $db->query($sql);
-                            	mysqli_close($db);
-                            }
-                        ?>
-	
-						
-       
+		<!--======================= Inscription ==================-->
+        <section class="flexslider-container" id="flexslider-container-1">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2" align="center">
+						<div class="panel panel-default insc">
+							<div class="panel-heading" style="background-color:orange" align="center"><b>INSCRIPTION</b></div>
+							<div class="panel-body">
+								<form  action="" method="POST">
+									<div class="form-group" align="left" autocomplete="on">
+										<label for="nom">Nom :</label>
+										<input id="nom" name="nom" class="form-control" type="text" pattern="[A-Za-z-é-ë-ï-ä-è]" /required>
+									</div>
+									<div class="form-group" align="left" autocomplete="on">
+										<label for="prenom">Prénom :</label>
+										<input id="prenom" name="prenom" class="form-control" type="text" pattern="[A-Za-z-é-ë-ï-ä-è]" /required>
+									</div>
+									<div class="form-group" align="left" autocomplete="on">
+										<label for="email">Adresse e-mail :</label>
+										 <input id="email" name="email" class="form-control" type="text" /required>
+									</div>
+									<div class="form-group" align="left" autocomplete="on">
+										<label for="dob">Date de naissance :</label>
+										<input type="date" name="dob" id="dob" class="form-control" max="2001-01-01" /required>
+									</div>     
+									<div class="form-group" align="left" autocomplete="on">
+										<label for="codepostal">Code Postal :</label>
+										<input type="text" id="codepostal" name="codepostal" class="form-control" maxlength="5" pattern="[0-1-2-3-4-5-6-7-8-9]{5}" /required>
+									</div>
+									<div class="form-group" align="left" autocomplete="on">
+										<label for="numero">Numéro de téléphone :</label>
+										<input type="text" id="numero" name="numero" class="form-control" maxlength="10" pattern="[0-1-2-3-4-5-6-7-8-9]{10}" /required>
+									</div>
+									<div class="form-group" align="left">
+										<label for="password" class="cols-sm-2 control-label">Mot de passe :</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+												<input type="password" class="form-control" name="password" id="password"  placeholder="Mot de passe" /required/>
+												</div>
+											</div>
+									</div>
+									<div class="form-group" align="left">
+										<label for="confirm" class="cols-sm-2 control-label">Confirmation du mot de passe :</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+												<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirmez le mot de passe" /required/>
+											</div>
+										</div>
+									</div>
+									<input type="submit" value="Créer votre compte MarieTeam" name="register" class="btn btn-orange">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section id="hotel-offers" class="section-padding">
+		</section>
 
         <!--======================= FOOTER =======================-->
         <section id="footer" class="ftr-heading-o ftr-heading-mgn-1">
@@ -359,6 +384,5 @@
         <script src="js/custom-date-picker.js"></script>
         <script src="js/custom-video.js"></script>
         <!-- Page Scripts Ends -->
-        
     </body>
 </html>

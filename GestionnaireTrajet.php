@@ -1,4 +1,6 @@
-<!doctype html>
+<?php 
+    session_start();
+?>
 <html lang="en">
     <head>
         <title>Gestionnaire Trajet</title>
@@ -75,7 +77,55 @@
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <div id="links">
                             <ul class="list-unstyled list-inline">
-                                <li><a href="Inscription.html"><span><i class="fa fa-lock"></i></span>S'identifier</a></li>
+                                 <?php 
+                                    if(!isset($_SESSION['id']))
+                                    {
+                                ?>
+                                        <li><a href="connexion.php"><span><i class="fa fa-lock"></i></span>S'identifier</a></li>
+                                        <li><a href="inscription.php"><span><i class="fa fa-lock"></i></span>S'inscrire</a></li>
+                                    }
+                                <?php
+                                    }
+                                    else
+                                    {
+                                ?>
+                                        <li><a href="profil.php"><span><i class="fa fa-lock"></i></span><?php echo $_SESSION['nom']?></a></li>
+                                        <li><a href="function/logout.php"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span>Deconnexion</a></li>
+                                <?php
+                                    }
+                                ?>
+                                    <div class="modal fade" id="popUpWindow">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        <!-- header -->
+                                            <!--<div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h3 class="modal-title">Se connecter</h3>
+                                            </div>-->
+                                        <!-- body -->
+                                        <form name="myform"  action="" method="POST">
+                                            <div class="modal-body">
+                                                <!--<label for="email">Adresse e-mail :</label>
+                                                <input id="email" name="email" class="form-control" type="text" /required>
+                                                <label for="password" class="cols-sm-2 control-label">Mot de passe :</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                        <input type="password" class="form-control" name="password" id="password"  placeholder="Mot de passe" autocomplete="on" /required/>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <input type="submit" value="Identifiez-vous" class="btn btn-orange  btn-block">-->
+                                            </div>
+                                        </form>
+                                        
+                                        <!-- footer -->
+                                            <div class="modal-footer">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <li>
                                 	<form>
                                     	<ul class="list-inline">
@@ -122,27 +172,27 @@
                     <div class="header-search hidden-lg">
                     	<a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a>
                     </div>
-                    <a href="index.html" class="navbar-brand"><span><i class="fa fa-ship"></i>MARIE</span>Team</a>
+                    <a href="index.php" class="navbar-brand"><span><i class="fa fa-ship"></i>MARIE</span>Team</a>
                 </div><!-- end navbar-header -->
                 
                 <div class="collapse navbar-collapse" id="myNavbar1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="button"><a href="index.html" class="btn btn-white" >Accueil<span></span></a>		
+                        <li class="button"><a href="index.php" class="btn btn-white" >Accueil<span></span></a>		
                         </li>
 						
-                        <li class="button"><a href="Trajet.html" class="btn btn-white" >Trajet<span></span></a>			
+                        <li class="button"><a href="Trajet.php" class="btn btn-white" >Trajet<span></span></a>			
                         </li>
 						
-                        <li class="button"><a href="Horaires.html" class="btn btn-white">Horaires<span></span></a>		
+                        <li class="button"><a href="Horaires.php" class="btn btn-white">Horaires<span></span></a>		
                         </li>
                         
-						<li class="button"><a href="Tarifs.html" class="btn btn-white" >Tarifs<span></span></a>		
+						<li class="button"><a href="Tarifs.php" class="btn btn-white" >Tarifs<span></span></a>		
                         </li>
 						
-						<li class="button"><a href="Reservation.html" class="btn btn-white" >Réservation<span></span></a>			
+						<li class="button"><a href="Reservation.php" class="btn btn-white" >Réservation<span></span></a>			
                         </li>
 						
-						<li class="button"><a href="FAQ.html" class="btn btn-white" >FAQ<span></span></a>
+						<li class="button"><a href="FAQ.php" class="btn btn-white" >FAQ<span></span></a>
                             
                         </li> 
                     </ul>
@@ -162,17 +212,17 @@
                     <div class="list-group panel">
                     <ul class="nav navbar-nav navbar-right navbar-search-link">
                         <li> 
-						<a href="index.html" class="btn btn-black" ><span><i class="fa fa-home link-icon"></i></span>  Accueil<span></span></a>
+						<a href="index.php" class="btn btn-black" ><span><i class="fa fa-home link-icon"></i></span>  Accueil<span></span></a>
 						
-                        <a href="Trajet.html" class="btn btn-black active"  ><span><i class="fa fa-ship link-icon"></i></span>  Trajets<span></span></a>                      
+                        <a href="Trajet.php" class="btn btn-black active"  ><span><i class="fa fa-ship link-icon"></i></span>  Trajets<span></span></a>                      
                         
-                        <a href="Horaires.html" class="btn btn-black" ><span><i class="fa fa-clock-o link-icon"></i></span>  Horaires<span></span></a>
+                        <a href="Horaires.php" class="btn btn-black" ><span><i class="fa fa-clock-o link-icon"></i></span>  Horaires<span></span></a>
                        
-                        <a href="Tarifs.html" class="btn btn-black"><span><i class="fa fa-euro link-icon"></i></span>  Tarifs<span></span></a>
+                        <a href="Tarifs.php" class="btn btn-black"><span><i class="fa fa-euro link-icon"></i></span>  Tarifs<span></span></a>
 						
-                        <a href="Reservation.html" class="btn btn-black" ><span><i class="fa fa-ticket link-icon"></i></span>  Réservation<span></span></a>
+                        <a href="Reservation.php" class="btn btn-black" ><span><i class="fa fa-ticket link-icon"></i></span>  Réservation<span></span></a>
 						
-                        <a href="FAQ.html" class="btn btn-black" ><span><i class="fa fa-question link-icon"></i></span>  FAQ<span></span></a>
+                        <a href="FAQ.php" class="btn btn-black" ><span><i class="fa fa-question link-icon"></i></span>  FAQ<span></span></a>
 						</li>
                     </ul>    
 
@@ -205,63 +255,106 @@
 						
 						<?php
 
-// Connexion a la BDD
-$bdd = 'ppe';
-$hostname = 'localhost';
-$username = 'root';
-$password = '';
-$db = mysqli_connect ($hostname, $username, $password, $bdd);
-if(!empty($_POST['txt_secteur']))
-{
-	$secteur = mysqli_real_escape_string($db, $_POST['txt_secteur']);
-	htmlspecialchars($secteur);
-	$liaison = mysqli_real_escape_string($db, $_POST['txt_liaison']);
-	htmlspecialchars($liaison);
-	$distance = mysqli_real_escape_string($db, $_POST['num_distance']);
-	htmlspecialchars($distance);
-	$depart = mysqli_real_escape_string($db, $_POST['txt_depart']);
-	htmlspecialchars($depart);
-	$arrivee = mysqli_real_escape_string($db, $_POST['txt_arrivee']);
-	htmlspecialchars($arrivee);
-	
-	$sec ="Select nom_secteur From secteur where nom_secteur = $secteur";
-	$res4 = $db->query($sec);
-	echo $res4;
-	/*if($res4 != null){
-	 echo 'existe';
-	}
-	else{
-		$req = "INSERT INTO secteur('',$secteur)";
-	    }*/
-		
-		
-    $secteur = strtoupper($secteur);
-    $sect ="INSERT INTO secteur VALUES('','$secteur')" ;
-	$port ="INSERT INTO port VALUES('','$depart')" ;
-	$port2 ="INSERT INTO port VALUES('','$arrivee')";
-	
-	$idsect="Select s.id_secteur FROM secteur s where s.nom_secteur='$secteur' ";
-	$idportdep="Select p.id_port FROM port p where p.nom_port='$depart' ";
-	$idportarr="Select p.id_port FROM port p where p.nom_port='$arrivee' ";
-	
-	
-	
-	$sql ="INSERT INTO liaison VALUES('$liaison','$distance','$idsect', '$idportdep', '$idportarr')";
-	
-	//$res1 = $db->query($req);
-	$res1 = $db->query($sect);
-	$res2 = $db->query($port);
-	$res3 = $db->query($port2);
-	
-	$res4 = $db->query($idsect);
-	$res5 = $db->query($idportdep);
-	$res6 = $db->query($idportarr);
-	
-	$res = $db->query($sql);
-	mysqli_close($db);
-}
-?>
-						
+                            
+                            if(!empty($_POST['txt_secteur']))
+                            {   
+                                include('function/coBdD.php');
+                            	$secteur = $_POST['txt_secteur'];
+                            	htmlspecialchars($secteur);
+                            	$liaison =  $_POST['txt_liaison'];
+                            	htmlspecialchars($liaison);
+                            	$distance = $_POST['num_distance'];
+                            	htmlspecialchars($distance);
+                            	$depart = $_POST['txt_depart'];
+                            	htmlspecialchars($depart);
+                            	$arrivee = $_POST['txt_arrivee'];
+                            	htmlspecialchars($arrivee);
+
+                                $nom_liaison = $depart.'-'.$arrivee;
+                            		
+                                $secteur = strtoupper($secteur);
+
+                                $present= 'SELECT * FROM secteur WHERE nom_secteur="'.$secteur.'"';
+                                $exist = $db->query($present);
+                                if($ext = $exist->fetch_array())
+                                {
+                                    echo "Erreur: Le secteur existe déja dans la table!\n";
+                                }
+                                else
+                                {
+                                    $sect ='INSERT INTO `secteur`(`nom_secteur`) VALUES ("'.$secteur.'");';
+                                    $res = $db->query($sect);
+                                }
+
+                                $present= 'SELECT * FROM port WHERE nom_port="'.$depart.'"';
+                                $exist = $db->query($present);
+                                if($ext = $exist->fetch_array())
+                                {
+                                    echo "Erreur: Le port existe déja dans la table!\n";
+                                }
+                                else
+                                {
+                                    $req = 'INSERT INTO `port`(`nom_port`) VALUES ("'.$depart.'");';
+                                    $res2 = $db->query($req);
+                                }
+
+                                $present= 'SELECT * FROM port WHERE nom_port="'.$arrivee.'"';
+                                $exist = $db->query($present);
+                                if($ext = $exist->fetch_array())
+                                {
+                                    echo "Erreur: Le port existe déja dans la table!\n";
+                                }
+                                else
+                                {
+                                    $req3 = 'INSERT INTO `port`(`nom_port`) VALUES ("'.$arrivee.'");';
+                                    
+                                    $res3 = $db->query($req3);
+                                }
+
+                                $Result= 'SELECT id_secteur FROM secteur  WHERE nom_secteur ="'.$secteur.'"';
+                            
+                                if($res4 = $db->query($Result))
+                                {
+                                    $line = $res4->fetch_array();
+                                }
+                                else
+                                {
+                                    echo "Erreur: Pour la requête 'SELECT id_secteur FROM secteur  WHERE nom_secteur ='.$secteur''\n";
+                                }
+
+
+                                $Result1= 'SELECT id_port FROM port  WHERE nom_port ="'.$depart.'"';
+                                
+                                if($res12 = $db->query($Result1))
+                                {
+                                    $line1 = $res12->fetch_array(); 
+                                }
+                                else
+                                {
+                                    echo "Erreur: Pour la requête SELECT id_port FROM port  WHERE nom_port = $depart'\n";
+                                }
+
+                                $Result2= 'SELECT id_port FROM port  WHERE nom_port ="'.$arrivee.'"';
+                                
+                                if($res13 = $db->query($Result2))
+                                {
+                                    $line2 = $res13->fetch_array();                                
+                                }
+                                else
+                                {
+                                    echo "Erreur: Pour la requête SELECT id_port FROM port  WHERE nom_port = $arrivee'\n";
+                                }
+                                $globalReq = 'INSERT INTO `liaison`(`Distance`, `id_secteur`, `id_port_dep`,`id_port_arr`,`nom_liaison` ) VALUES ("'.$distance.'", "'.$line['id_secteur'].'", "'.$line1['id_port'].'","'.$line2['id_port'].'", "'.$nom_liaison.'");';
+                                
+
+                                if(!$resFini = $db->query($globalReq))
+                                {
+                                    echo "Erreur insertion dans la tableau liaison a échoué\n";
+                                }
+
+                            }
+                        ?>
+                        						
 						
 
        
@@ -285,19 +378,19 @@ if(!empty($_POST['txt_secteur']))
                         <div class="col-xs-12 col-sm-6 col-md-2 col-lg-4 footer-widget ftr-links">
                             <h3 class="footer-heading">Site</h3>
                             <ul class="list-unstyled">
-                            	<li><a href="index.html">Accueil</a></li>
-                            	<li><a href="Trajet.html">Trajets</a></li>
-                                <li><a href="Horaires.html">Horaires</a></li>
-                                <li><a href="Tarifs.html">Tarifs</a></li>
-                                <li><a href="Reservation.html">Réservation</a></li>
-                                <li><a href="FAQ.html">FAQ</a></li>
+                            	<li><a href="index.php">Accueil</a></li>
+                            	<li><a href="Trajet.php">Trajets</a></li>
+                                <li><a href="Horaires.php">Horaires</a></li>
+                                <li><a href="Tarifs.php">Tarifs</a></li>
+                                <li><a href="Reservation.php">Réservation</a></li>
+                                <li><a href="FAQ.php">FAQ</a></li>
                             </ul>
                         </div><!-- end columns -->
                         
                         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 footer-widget ftr-links ftr-pad-left">
                         	<h3 class="footer-heading">RESOURCES</h3>
                             <ul class="list-unstyled">
-                            	<li><a href="FAQ.html">FAQ</a></li>
+                            	<li><a href="FAQ.php">FAQ</a></li>
                                 <li><a href="Inscription.html">S'identifier</a></li>
                             </ul>
                         </div><!-- end columns -->
