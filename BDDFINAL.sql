@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 04 Mars 2019 à 08:43
+-- Généré le :  Lun 04 Mars 2019 à 11:10
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -29,15 +29,20 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `bateau` (
   `id_bateau` int(11) NOT NULL AUTO_INCREMENT,
   `Nom_Bateau` varchar(50) NOT NULL,
+  `Longueur` float DEFAULT NULL,
+  `Largeur` float DEFAULT NULL,
+  `Vitesse` float DEFAULT NULL,
+  `Nb_Equipement` int(255) DEFAULT NULL,
   PRIMARY KEY (`id_bateau`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12346 ;
 
 --
 -- Contenu de la table `bateau`
 --
 
-INSERT INTO `bateau` (`id_bateau`, `Nom_Bateau`) VALUES
-(1, 'Antonio');
+INSERT INTO `bateau` (`id_bateau`, `Nom_Bateau`, `Longueur`, `Largeur`, `Vitesse`, `Nb_Equipement`) VALUES
+(1, 'Antonio', 365, 52, 120, 10),
+(12345, 'Intrepide', 255, 20, 100, 15);
 
 -- --------------------------------------------------------
 
@@ -96,6 +101,7 @@ CREATE TABLE IF NOT EXISTS `liaison` (
   `id_secteur` int(11) NOT NULL,
   `id_port_dep` int(11) NOT NULL,
   `id_port_arr` int(11) NOT NULL,
+  `nom_liaison` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`code`),
   KEY `Liaison_Secteur_FK` (`id_secteur`),
   KEY `Liaison_Port0_FK` (`id_port_dep`),
@@ -106,9 +112,9 @@ CREATE TABLE IF NOT EXISTS `liaison` (
 -- Contenu de la table `liaison`
 --
 
-INSERT INTO `liaison` (`code`, `Distance`, `id_secteur`, `id_port_dep`, `id_port_arr`) VALUES
-(1, 3625, 1, 1, 2),
-(2, 3625, 1, 2, 1);
+INSERT INTO `liaison` (`code`, `Distance`, `id_secteur`, `id_port_dep`, `id_port_arr`, `nom_liaison`) VALUES
+(1, 3625, 1, 1, 2, 'Paris-New York'),
+(2, 3625, 1, 2, 1, 'New York-Paris');
 
 -- --------------------------------------------------------
 
@@ -141,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `port` (
   `id_port` int(11) NOT NULL AUTO_INCREMENT,
   `nom_port` varchar(50) NOT NULL,
   PRIMARY KEY (`id_port`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=65 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
 
 --
 -- Contenu de la table `port`
@@ -152,59 +158,10 @@ INSERT INTO `port` (`id_port`, `nom_port`) VALUES
 (2, 'New York'),
 (3, 'Japon'),
 (4, 'Chine'),
-(11, 'tysduysid'),
-(12, 'ghdjcik'),
-(13, 'jhdygeygd'),
-(14, 'juzgduag'),
-(15, 'jhdygeygd'),
-(16, 'juzgduag'),
-(17, 'fizerhf'),
-(18, 'fjhzgf'),
-(19, 'fzheg'),
-(20, 'kzhfgzh'),
-(21, 'ljkfvbje'),
-(22, 'lkjfbvlejf'),
-(23, 'kjfgbjh'),
-(24, 'ldkfjgk'),
-(25, 'kjfgbjh'),
-(26, 'ldkfjgk'),
-(27, 'jejrhgh'),
-(28, 'rjhaerh'),
-(29, 'jejrhgh'),
-(30, 'rjhaerh'),
-(31, 'jyhdfgyezr'),
-(32, 'jkhrgfeyrfg'),
-(33, 'iutyf_(tif'),
-(34, '(_Ã¨tÃ§_(tÃ§_'),
-(35, 'iutyf_(tif'),
-(36, '(_Ã¨tÃ§_(tÃ§_'),
-(37, 'zkuyfguze'),
-(38, 'izefgizuef'),
-(39, 'ekruheurhg'),
-(40, 'ergherhg'),
-(41, 'ekruheurhg'),
-(42, 'ergherhg'),
-(43, 'srthsrthrt'),
-(44, 'sthsethset'),
-(45, 'srthsrthrt'),
-(46, 'sthsethset'),
-(47, 'srthsrthrt'),
-(48, 'sthsethset'),
-(49, 'srthsrthrt'),
-(50, 'sthsethset'),
-(51, 'srthsrthrt'),
-(52, 'sthsethset'),
-(53, 'srthsrthrt'),
-(54, 'sthsethset'),
-(55, 'testbb'),
-(56, 'testaa'),
-(57, 'testbb'),
-(58, 'testaa'),
 (59, 'testbb'),
 (60, 'testaa'),
 (61, 'France'),
 (62, 'Italie'),
-(63, 'New York'),
 (64, 'Los Angeles');
 
 -- --------------------------------------------------------
@@ -233,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `secteur` (
   `id_secteur` int(11) NOT NULL AUTO_INCREMENT,
   `nom_secteur` varchar(50) NOT NULL,
   PRIMARY KEY (`id_secteur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Contenu de la table `secteur`
@@ -242,58 +199,10 @@ CREATE TABLE IF NOT EXISTS `secteur` (
 INSERT INTO `secteur` (`id_secteur`, `nom_secteur`) VALUES
 (1, 'ATLANTIQUE'),
 (2, 'PACIFIQUE'),
-(6, 'JKFDJHDD'),
-(7, 'JDJKEDG'),
-(8, 'JDJKEDG'),
-(9, 'IUFVE'),
-(10, 'UFYEGJFYU'),
-(11, 'UFHUEFV'),
-(12, 'OIRUUFUY'),
-(13, 'OIRUUFUY'),
-(14, 'OIUYYR'),
-(15, 'OIUYYR'),
-(16, 'JUYGFH'),
-(17, '(T(RRIU'),
-(18, '(T(RRIU'),
-(19, 'ZIHFGZYEGFYZ'),
-(20, 'KEJFGHIUERH'),
-(21, 'KEJFGHIUERH'),
-(22, 'FTGHSRTH'),
-(23, 'FTGHSRTH'),
-(24, 'FTGHSRTH'),
-(25, 'FTGHSRTH'),
-(26, 'FTGHSRTH'),
-(27, 'FTGHSRTH'),
-(28, 'TEST'),
-(29, 'TEST'),
 (30, 'TEST'),
 (31, 'EUROPE'),
-(32, 'AMERIQUE');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `trajet`
---
-
-CREATE TABLE IF NOT EXISTS `trajet` (
-  `code` int(255) NOT NULL,
-  `id_sect` int(255) NOT NULL,
-  `distance` int(255) NOT NULL,
-  `id_porta` int(255) NOT NULL,
-  `id_portd` int(255) NOT NULL,
-  `nom_trajet` varchar(255) NOT NULL,
-  PRIMARY KEY (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `trajet`
---
-
-INSERT INTO `trajet` (`code`, `id_sect`, `distance`, `id_porta`, `id_portd`, `nom_trajet`) VALUES
-(25, 31, 1558, 62, 61, 'France-Italie'),
-(47, 28, 1478, 56, 55, 'testbb-testaa'),
-(69, 32, 5625, 64, 2, 'New York-Los Angeles');
+(32, 'AMERIQUE'),
+(33, 'ASIE');
 
 -- --------------------------------------------------------
 
