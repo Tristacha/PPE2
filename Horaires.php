@@ -219,8 +219,19 @@
                         	<h2>Horaires des croisières</h2>
                             <hr class="heading-line" />
                         </div><!-- end page-heading -->
-                   
-
+                        <?php 
+                            if(!isset($_GET['code']))
+                                    {?>
+                            <form method="post" >
+                                <select name="cbBox">
+                                    <option value="0">Toutes les périodes</option>
+                                    <option value="1">01 Janvier - 01 Mai</option>
+                                    <option value="2">02 Mai - 01 Septembre</option>
+                                    <option value="3">02 Septembre - 31 Décembre</option>
+                                </select>
+                                <input type="submit" name="btnEnvoyer" value="Confirmer la période">
+                            </form>
+                        <?php }?>
                         <div class="container-table100" style="background-color: transparent; ">
                             <div class="wrap-table100" style="width: 1200px; ">
                             <div class="table" style="text-align: center;  " >
@@ -242,37 +253,61 @@
                             <?php 
                                 if(!isset($_GET['code']))
                                 {
-                                    
                                     include('function/coBdD.php');
-                                    $sql = 'SELECT nom_liaison,Nom_Bateau, date, heure From liaison AS L , bateau AS B, Traversee AS T WHERE B.id_bateau = T.id_bateau AND L.code = T.code ';
-                                    $req = $db->query($sql);
-                                    
-                                    while($res= $req->fetch_array())
+                                    $selectPeriodes = 'SELECT * FROM periode';
+                                    $lesPeriodes = $db->query($selectPeriodes);
+                                    if(isset($_POST['cbBox'])) 
                                     {
-                            ?>  
+                                        $selection = intval($_POST['cbBox']);
+                                    }
+                                    else 
+                                    {
+                                        $selection = 0;
+                                    }
+                                    $i = 1;
+                                    if($selection != 0){
+                                        while($unePeriode = $lesPeriodes->fetch_array()){
+                                            if($i == $selection){
+                                                $dateDeb = $unePeriode['dateDeb'];
+                                                $dateFin = $unePeriode['dateFin'];
+                                            }
+                                            $i++;
+                                        }
+                                        $sql = 'SELECT nom_liaison,Nom_Bateau, date, heure From liaison AS L , bateau AS B, Traversee AS T WHERE B.id_bateau = T.id_bateau AND L.code = T.code AND date >= "'.$dateDeb.'" AND date <= "'.$dateFin.'"';
+                                    }else{
+                                        $sql = 'SELECT nom_liaison,Nom_Bateau, date, heure From liaison AS L , bateau AS B, Traversee AS T WHERE B.id_bateau = T.id_bateau AND L.code = T.code';
+                                    }
+                                    $req = $db->query($sql);
+                                    while($res = $req->fetch_array())
+                                    {   
+                                    ?>
                                         <div class="row" style="text-align: center;">
                                             <div class="cell" style="width: 400px;" data-title="Nom du secteur">
                                                 <?php echo $res['nom_liaison'];?>
+                                                </div>
+                                                <div class="cell" style="width: 400px;" data-title="Distance">
+                                                    <?php echo $res['date'];?>
+                                                </div>
+                                                <div class="cell" style="width: 400px;" data-title="Port de Départ">
+                                                     <?php echo $res['heure'];?>
+                                                </div>
+                                                <div class="cell" style="width: 400px;" data-title="Port d'Arrivée">
+                                                    <?php echo $res['Nom_Bateau'];?>
+                                                </div>
                                             </div>
-                                            <div class="cell" style="width: 400px;" data-title="Distance">
-                                                <?php echo $res['date'];?>
-                                            </div>
-                                            <div class="cell" style="width: 400px;" data-title="Port de Départ">
-                                                 <?php echo $res['heure'];?>
-                                            </div>
-                                            <div class="cell" style="width: 400px;" data-title="Port d'Arrivée">
-                                                <?php echo $res['Nom_Bateau'];?>
-                                            </div>
-                                        </div>
-                                <?php
-                                    } 
-                                }
-                                else
-                                {
+                                            <?php
+                                        }
+
                                     
+                                }else
+                                {
                                     include('function/coBdD.php');
                                     $sql = 'SELECT nom_liaison,Nom_Bateau, date, heure From liaison AS L , bateau AS B, Traversee AS T WHERE L.code = "'.$_GET['code'].'" AND T.code ="'.$_GET['code'].'" AND B.id_bateau = T.id_bateau';
                                     $req = $db->query($sql);
+                                    //var_dump($req);
+
+
+
                                     while ($res= $req->fetch_array())
                                     {
                                 ?>
@@ -292,6 +327,7 @@
                                         </div>
                                 <?php 
                                     }
+                                
                                 }
                                 ?>     
                     </div><!-- end columns -->
