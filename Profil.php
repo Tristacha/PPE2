@@ -248,7 +248,13 @@ if(isset($_POST['save']))
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a href="index.html"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                            <a href="index.html"><i class="fas fa-tachometer-alt"></i>Administration</a>
+                        </li>
+                         <li class="active has-sub">
+                            <a href="GestionnaireBateau.php">Gestion des Bateaux</a>
+                        </li>
+                         <li class="active has-sub">
+                            <a href="GestionnaireTrajet.php">Gestion des Trajets</a>
                         </li>
                     </ul>
                 </nav>
