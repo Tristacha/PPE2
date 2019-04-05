@@ -232,182 +232,89 @@
         </div><!-- end sidenav-content -->
         
         
-		<!--========================= FLEX SLIDER =====================-->
-        <section class="flexslider-container" id="flexslider-container-1">
-
-            <div class="flexslider slider" id="slider-1">
-                <ul class="slides">
-                    
-                    <li class="item-1" style="background:			linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(images/accueil.jpg) 50% 0%;
-	background-size:cover;
-	height:100%;">
-                    	<div class=" meta">         
-                            <div class="container">
-                                <h2>FAQ</h2>
-                                <h1>Les Caraïbes</h1>
-                                <a href="#" class="btn btn-default">En voir plus</a>
-                            </div><!-- end container -->  
-                        </div><!-- end meta -->
-                    </li><!-- end item-1 -->
-                    
-                   
-                </ul>
-            </div><!-- end slider -->
-
-        
-        <!--=============== HOTEL OFFERS ===============-->
-        <section id="hotel-offers" class="section-padding">
-        	<div class="container">
-        		<div class="row">
-        			<div class="col-sm-12">
-                    	<div class="page-heading">
-                        	<h2>Nos Croisières</h2>
-                            <hr class="heading-line" />
-                        </div><!-- end page-heading -->
-                        
-                        <div class="owl-carousel owl-theme owl-custom-arrow" id="owl-hotel-offers">
-                            
-                            <div class="item">
-                                <div class="main-block hotel-block">
-                                    <div class="main-img">
-                                    	<a href="#">
-                                        	<img src="images/C1.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                        	<ul class="list-unstyled list-inline offer-price-1">
-                                            	<li class="price">€300.00<span class="divider">|</span><span class="pkg">Jour/Nuit</span></li>
-                                                <li class="rating">
-                                                	<span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end offer-img -->
-                                    
-                                    <div class="main-info hotel-info">
-                                    	<div class="arrow">
-                                        	<a href="#"><span><i class="fa fa-angle-right"></i></span></a>
-                                        </div><!-- end arrow -->
-                                        
-                                    	<div class="main-title hotel-title">
-                                            <a href="#">Hotel de Paris</a>
-                                            <p>Pour: Paris</p>
-                                        </div><!-- end hotel-title -->
-                                    </div><!-- end hotel-info -->
-                                </div><!-- end hotel-block -->
-                            </div><!-- end item -->
-                        	
-                            <div class="item">
-                                <div class="main-block hotel-block">
-                                    <div class="main-img">
-                                    	<a href="#">
-                                        	<img src="images/C2.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                        	<ul class="list-unstyled list-inline offer-price-1">
-                                            	<li class="price">€300.00<span class="divider">|</span><span class="pkg">Jour/Nuit</span></li>
-                                                <li class="rating">
-                                                	<span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end offer-img -->
-                                    
-                                    <div class="main-info hotel-info">
-                                    	<div class="arrow">
-                                        	<a href="#"><span><i class="fa fa-angle-right"></i></span></a>
-                                        </div><!-- end arrow -->
-                                        
-                                    	<div class="main-title hotel-title">
-                                            <a href="#">Hotel de Paris</a>
-                                            <p>Pour: Paris</p>
-                                        </div><!-- end hotel-title -->
-                                    </div><!-- end hotel-info -->
-                                </div><!-- end hotel-block -->
-                            </div><!-- end item -->
-                            
-                            <div class="item">
-                                <div class="main-block hotel-block">
-                                    <div class="main-img">
-                                    	<a href="#">
-                                        	<img src="images/C3.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                        	<ul class="list-unstyled list-inline offer-price-1">
-                                            	<li class="price">€300.00<span class="divider">|</span><span class="pkg">Jour/Nuit</span></li>
-                                                <li class="rating">
-                                                	<span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end offer-img -->
-                                    
-                                    <div class="main-info hotel-info">
-                                    	<div class="arrow">
-                                        	<a href="#"><span><i class="fa fa-angle-right"></i></span></a>
-                                        </div><!-- end arrow -->
-                                        
-                                    	<div class="main-title hotel-title">
-                                            <a href="#">Hotel de Paris</a>
-                                            <p>Pour: Paris</p>
-                                        </div><!-- end hotel-title -->
-                                    </div><!-- end hotel-info -->
-                                </div><!-- end hotel-block -->
-                            </div><!-- end item -->
-                            
-                            <div class="item">
-                                <div class="main-block hotel-block">
-                                    <div class="main-img">
-                                    	<a href="#">
-                                        	<img src="images/C4.jpg" class="img-responsive" alt="hotel-img" />
-                                        </a>
-                                        <div class="main-mask">
-                                        	<ul class="list-unstyled list-inline offer-price-1">
-                                            	<li class="price">€300.00<span class="divider">|</span><span class="pkg">Jour/Nuit</span></li>
-                                                <li class="rating">
-                                                	<span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star orange"></i></span>
-                                                    <span><i class="fa fa-star lightgrey"></i></span>
-                                                </li>
-                                            </ul>
-                                        </div><!-- end main-mask -->
-                                    </div><!-- end offer-img -->
-                                    
-                                    <div class="main-info hotel-info">
-                                    	<div class="arrow">
-                                        	<a href="#"><span><i class="fa fa-angle-right"></i></span></a>
-                                        </div><!-- end arrow -->
-                                        
-                                    	<div class="main-title hotel-title">
-                                            <a href="#">Hotel de Paris</a>
-                                            <p>Pour: Paris</p>
-                                        </div><!-- end hotel-title -->
-                                    </div><!-- end hotel-info -->
-                                </div><!-- end hotel-block -->
-                            </div><!-- end item -->
-                            
-                        </div><!-- end owl-hotel-offers -->
-                        
-                        <div class="view-all text-center">
-                        	<a href="Trajet.php" class="btn btn-orange">Voir toutes les croisières</a>
-                        </div><!-- end view-all -->
-                    </div><!-- end columns -->
-                </div><!-- end row -->
-        	</div><!-- end container -->
-        </section><!-- end hotel-offers -->
+		<!--========================= Titre =====================-->
+		<center>
+        <font size = "10"> Foire aux Questions </font>
+		</center>
+			
+		<!--=============== Texte FAQ ===============-->
+		
+		<!-- les questions de la FAQ -->
+    <center>
+   
+  
+    <!--Création d'une liste de question/réponse-->
+	
+    <div class="faq">
+        <ul style="list-style-type: none">
+            <li>
+                <h3 id="question_1" name="question_1">
+                    Délai de rétractation?
+                </h3>
+                La rétractation est valide jusqu'à deux semaines avant le départ du bateau.
+            </li>
+            <br>
+            <li>
+                <h3 id="question_2" name="question_2">
+                   Remboursement?
+                </h3>
+                Le remboursement de votre billet se fait sous les 30 jours après votre demande.
+            </li>
+            <br>
+            <li>
+                <h3 id="question_3" name="question_3">
+                    Probleme de connexion?
+                </h3>
+                Si vous n'arrivez pas à vous connecter à votre profil, veuillez faire part de votre problème à l'adresse suivante : support@marieteam.com
+            </li>
+            <br>
+            <li>
+                <h3 id="question_4" name="question_4">
+                    Comment beneficier de reduction?
+                </h3>
+                Plus votre ancienneté est élevée, plus vous aurez le droit à différentes réductions.
+            </li>
+			<br>
+			<li>
+                <h3 id="question_5" name="question_5">
+                   Où retrouver mon billet?
+                </h3>
+                Vous pourrez retrouver votre billet d'embarcation sur votre profil ou dans votre boîte mail.
+            </li>
+			<br>
+			<li>
+                <h3 id="question_6" name="question_6">
+                   Y a t-il une limite au nombre de véhicules?
+                </h3>
+                Vous avez la possibilité de prendre le nombre de véhicule de votre choix mais d'une seule sorte.
+            </li>
+			<br>
+			<li>
+                <h3 id="question_7" name="question_7">
+                   Les animaux sont-ils acceptés?
+                </h3>
+                Un espace est décerné aux animaux sur chaque bateau de notre compagnie, lors de votre montée sur le bateau, il vous suffira de confier votre animal à une personne responsable de cet espace.
+            </li>
+			<br>
+			<li>
+                <h3 id="question_8" name="question_8">
+                Les bateaux sont-ils équipés d'accès pour personnes à mobilité réduite?
+                </h3>
+                Certains bateaux sont accesibles mais pour cela, plus d'informations sont disponible sur la page de la croisière concernée.
+            </li>
+			<br>
+			<li>
+                <h3 id="question_9" name="question_9">
+                Les pertes/vol de baggages sont-ils couverts par la compagnie?
+                </h3>
+                Tout les cas ne sont pas pris en compte, seuls les vols prouvés peuvent être couverts par Marie-Team.
+            </li>
+        </ul>
+		<br>
+		<br>
+		<br>
+		<br>
+    </div>
         
        
 
